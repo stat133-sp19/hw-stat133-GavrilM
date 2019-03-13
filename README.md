@@ -2,11 +2,11 @@
 
 Private Repository for HW assignments of Stat 133 (Spring 2019)
 
-- Name: Your name (first last)
-- Github username: usrname
-- Email: address [at] email.com
-- Lab section: 101
-- GSI: Leia Organa
+- Name: Your name (Gavril Moniaga)
+- Github username: GavrilM
+- Email: ghmoniaga [at] berkeley.edu
+- Lab section: 109
+- GSI: 
 
 -----
 
