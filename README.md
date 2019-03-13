@@ -2,7 +2,7 @@
 
 Private Repository for HW assignments of Stat 133 (Spring 2019)
 
-- Name: Your name (Gavril Moniaga)
+- Name: Gavril Moniaga
 - Github username: GavrilM
 - Email: ghmoniaga [at] berkeley.edu
 - Lab section: 109
