@@ -1,0 +1,4 @@
+"0","allpts <- group_by(data, name)"
+"0","allpts <- summarize(allpts, total=length(shot_made_flag), made=sum(shot_made_flag == 'shot_yes'), perc_made = made/total)"
+"0","allpts <- arrange(allpts,desc(perc_made))"
+"0","kable(allpts, caption= 'Overall Effective Shooting % by Player')"

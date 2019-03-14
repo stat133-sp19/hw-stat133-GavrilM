@@ -1,0 +1,4 @@
+"0","threept <- group_by(filter(data, shot_type==""3PT Field Goal""), name)"
+"0","threept <- summarize(threept, total=length(shot_made_flag), made=sum(shot_made_flag == 'shot_yes'), perc_made = made/total)"
+"0","threept <- arrange(threept,desc(perc_made))"
+"0","kable(threept, caption= '3PT Effective Shooting % by Player')"

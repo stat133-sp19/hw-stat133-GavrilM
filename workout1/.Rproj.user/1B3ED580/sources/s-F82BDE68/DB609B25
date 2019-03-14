@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1552516487620.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3362911231",
+    "id" : "DB609B25",
+    "lastKnownWriteTime" : 1552516943,
+    "last_content_update" : 1552516943883,
+    "path" : "C:/Users/Moniaga/Code/stat133/workout1/code/make-shot-charts-script.R",
+    "project_path" : "code/make-shot-charts-script.R",
+    "properties" : {
+        "cursorPosition" : "3,132",
+        "scrollLine" : "3"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

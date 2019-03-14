@@ -1,0 +1,4 @@
+"0","twopt <- group_by(filter(data, shot_type==""2PT Field Goal""), name)"
+"0","twopt <- summarize(twopt, total=length(shot_made_flag), made=sum(shot_made_flag == 'shot_yes'), perc_made = made/total)"
+"0","twopt <- arrange(twopt,desc(perc_made))"
+"0","kable(twopt, caption= '2PT Effective Shooting % by Player')"
