@@ -1,0 +1,137 @@
+---
+title: "Warm Up 6"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 1. Future Value Function
+
+```{r}
+#' @title future value
+#' @description calculates the future value based on intial value and rate
+#' @param amount inital invested amount
+#' @param rate annual rate of return
+#' @param years number in years
+#' @return future value
+future_value <- function(amount, rate, years) {
+  return(amount*(1 + rate)^years)
+}
+
+future_value(amount = 100, rate = 0.05, years = 1)
+future_value(amount = 500, rate = 0.05, years = 5)
+future_value(amount = 1000, rate = 0.05, years = 10)
+```
+
+## 2. Future Value of Annuity
+
+```{r}
+#' @title future value of annuity
+#' @description calculates the future value of an annuity
+#' @param contrib contributed amount
+#' @param rate annual rate of return
+#' @param years number in years
+#' @return future value of annuity
+annuity <- function(contrib, rate, years) {
+  return(contrib*(((1 + rate)^years - 1)/rate))
+}
+
+annuity(contrib = 200, rate = 0.05, years = 1)
+annuity(contrib = 200, rate = 0.05, years = 2)
+annuity(contrib = 200, rate = 0.05, years = 10)
+
+```
+
+## 3. Future Value of Growing Annuity
+
+```{r}
+#' @title future value of growing annuity
+#' @description calculates the future value of a growing annuity
+#' @param contrib contibuted amount
+#' @param rate annual rate of return
+#' @param growth annual rate of growth
+#' @param years number in years
+#' @return future value of annuity
+growing_annuity <- function(contrib, rate, growth, years) {
+  return(contrib*(((1 + rate)^years - (1 + growth)^years)/(rate -growth)))
+}
+
+growing_annuity(contrib = 200, rate = 0.05, growth = 0.03, years = 1)
+growing_annuity(contrib = 200, rate = 0.05, growth = 0.03, years = 2)
+growing_annuity(contrib = 200, rate = 0.05, growth = 0.03, years = 10)
+
+```
+
+## 4. Investing Modalities
+
+### 4.1 For loop and table
+
+```{r}
+no_contrib <- c()
+fixed_contrib <- c()
+growing_contrib <- c()
+for(k in 1:11) {
+  no_contrib[k] = future_value(1000, .05, k-1)
+  fixed_contrib[k] = no_contrib[k] + annuity(200, .05, k-1)
+  growing_contrib[k] = no_contrib[k] + growing_annuity(200, .05, .03, k-1)
+}
+
+modalities <- data.frame("year" = 0:10, no_contrib, fixed_contrib, growing_contrib)
+modalities
+```
+
+### 4.2 Timeline Graph
+
+```{r}
+library(ggplot2)
+ggplot(data=modalities) + 
+  geom_line(aes(x=modalities$year, y=modalities$no_contrib, color="no contrib")) +
+  geom_line(aes(x=modalities$year, y=modalities$fixed_contrib, color="fixed contrib")) +
+  geom_line(aes(x=modalities$year, y=modalities$growing_contrib, color="growing contrib")) +
+  labs(x="years",y="dollars",title="Amount of Savings vs Years in Different Savings Modalities", color="Modalities")
+
+```
+
+## 5. Savings Simulation
+
+### For loops
+```{r}
+library(dplyr)
+# regular
+n=15
+simulation <- data.frame(year=integer(),savings_type=character(),modality=character(),balance=double())
+
+for(k in 0:n) {
+  fv = future_value(10000, .001, k)
+  simulation <- add_row(simulation, year=k, savings_type="Regular Savings", "modality"="No Contrib", "balance"=fv)
+  simulation <- add_row(simulation, year=k, savings_type="Regular Savings", "modality"="Fixed Contrib", "balance"=fv + annuity(2000, .001, k))
+  simulation <- add_row(simulation, year=k, savings_type="Regular Savings", "modality"="Growing Contrib", "balance"=fv+ growing_annuity(2000, .001, .04, k))
+}
+
+# high yield
+for(k in 0:n) {
+  fv = future_value(10000, .0225, k)
+  simulation <- add_row(simulation, year=k, savings_type="High Yield", "modality"="No Contrib", "balance"=fv)
+  simulation <- add_row(simulation, year=k, savings_type="High Yield", "modality"="Fixed Contrib", "balance"=fv + annuity(2000, .0225, k))
+  simulation <- add_row(simulation, year=k, savings_type="High Yield", "modality"="Growing Contrib", "balance"=fv+ growing_annuity(2000, .0225, .04, k))
+}
+
+# Index Fund
+for(k in 0:n) {
+  fv = future_value(10000, .065, k)
+  simulation <- add_row(simulation, year=k, savings_type="Index Fund", "modality"="No Contrib", "balance"=fv)
+  simulation <- add_row(simulation, year=k, savings_type="Index Fund", "modality"="Fixed Contrib", "balance"=fv + annuity(2000, .065, k))
+  simulation <- add_row(simulation, year=k, savings_type="Index Fund", "modality"="Growing Contrib", "balance"=fv+ growing_annuity(2000, .065, .04, k))
+}
+
+simulation
+```
+
+### Facet Timeline Graph
+
+```{r}
+ggplot(simulation, aes(year,balance,color=modality)) + geom_line() + facet_wrap(~ savings_type)
+```
+

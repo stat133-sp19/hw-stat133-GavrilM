@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1555537313183.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2066966363",
+    "id" : "3F8489A0",
+    "lastKnownWriteTime" : 1554158819,
+    "last_content_update" : 1554158819,
+    "path" : "C:/Users/ghmon/Code/Stat133/warmup06/warmup06-gavril-moniaga.Rmd",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "134,95",
+        "last_setup_crc32" : "",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

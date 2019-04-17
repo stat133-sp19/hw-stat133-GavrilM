@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1555536014257.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "29745154",
+    "id" : "E67B3868",
+    "lastKnownWriteTime" : 1555539370,
+    "last_content_update" : 1555539370573,
+    "path" : "C:/Users/ghmon/Code/Stat133/workout2/Modalities/app.R",
+    "project_path" : "Modalities/app.R",
+    "properties" : {
+        "cursorPosition" : "150,32",
+        "scrollLine" : "121"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
