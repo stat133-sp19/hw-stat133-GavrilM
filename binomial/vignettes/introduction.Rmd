@@ -1,0 +1,87 @@
+---
+title: "Getting Started with Binomial"
+author: "Gavril Moniaga"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to binomial}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, echo = FALSE, message = FALSE}
+knitr::opts_chunk$set(collapse = T, comment = "#>")
+library(binomial)
+```
+
+## Binomial Distribution
+
+The package `"binomial"` is a compact implementation to compute and visualize attributes of
+the binomial distribution.
+
+## Main functions
+There are four main functions in this package.
+
+### Choose (n choose k)
+Calculates the number of calculates the number of combinations in which `k` successes can occur in `n` trials.
+
+```{r}
+bin_choose(n = 5,k = 2)
+```
+
+### Probability
+Calculates the probability of getting `success` successes in `trials` trials, with probability `prob` of success.
+
+```{r}
+bin_probability(success = 2, trials = 5, prob = 0.5)
+```
+
+### Probability Distribution
+Generates a data.frame mapping number of successes to the probability of that number of successes.
+
+```{r}
+bin_distribution(trials = 5, prob = 0.5)
+```
+
+To plot this distribution:
+
+```{r, fig.show='hold'}
+dis1 <- bin_distribution(trials = 5, prob = 0.5)
+plot(dis1)
+```
+
+### Cumulative Distribution
+Generates a data.frame mapping number of successes to the probability of that number of successes, as well as the cumulative probablility.
+
+```{r}
+bin_cumulative(trials = 5, prob = 0.5)
+```
+
+To plot this distribution:
+
+```{r, fig.show='hold'}
+dis2 <- bin_cumulative(trials = 5, prob = 0.5)
+plot(dis2)
+```
+
+## Creating a Random Variable `binvar` object
+
+To understand a specific binomial distribution, create a `binvar` object. You can then proceed to view the summary of the variable, including data on the mean, variance, mode, skewness, and kurtosis of the binomial random variable.
+
+```{r}
+bin1 <- bin_variable(trials = 10, p = 0.3)
+bin1
+binsum1 <- summary(bin1)
+binsum1
+```
+
+## Functions of measures
+There are also convenient main functions for each of the summary measures:
+
+```{r}
+bin_mean(10, 0.3)
+bin_variance(10, 0.3)
+bin_mode(10, 0.3)
+bin_skewness(10, 0.3)
+bin_kurtosis(10, 0.3)
+```
