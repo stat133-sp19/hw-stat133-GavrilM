@@ -96,7 +96,7 @@ bin_cumulative <- function(trials, prob) {
 
 #' @export
 plot.bincum <- function(df, ...) {
-  lines(x=df$success,y=df$cumulative)
+  plot(x=df$success,y=df$cumulative,type="o",ylab="cumulative", xlab="success")
 }
 
 #' @title bin_variable
