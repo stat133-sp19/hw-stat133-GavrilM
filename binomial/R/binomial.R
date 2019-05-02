@@ -114,42 +114,44 @@ bin_variable <- function(trials, prob) {
   check_trials(trials)
   check_prob(prob)
   
-  binvar = c("trials"=trials, "prob"=prob)
+  binvar = list("trials"=trials, "prob"=prob)
   class(binvar) <- "binvar"
   return(binvar)
 }
 
 #' @export
 print.binvar <- function(binvar) {
-  sprintf("\"Binomial variable\"\n\nParameters\n- number of trials: %d\n- prob of success : %f",
-          binvar$trials, binvar$prob)
+  cat(paste("\"Binomial variable\"\n\nParameters\n- number of trials: ", binvar$trials,
+            "\n- prob of success : ", binvar$prob, sep=""))
+  invisible(binvar)
 }
 
 #' @export
 summary.binvar <- function(binvar) {
-  sb = c(binvar,
-         "mean"=aux_mean(binvar$trials, binvar$prob),
-         "variance": aux_variance(binvar$trials, binvar$prob),
-         "mode"=aux_mode(binvar$trials, binvar$prob),
-         "skewness"=aux_skewness(binvar$trials, binvar$prob),
-         "kurtosis"=aux_kurtosis(binvar$trials, binvar$prob))
+  sb = list("trials"=binvar$trials,
+            "prob"=binvar$prob,
+         "mean"=aux_mean(binvar$trials,binvar$prob),
+         "variance"= aux_variance(binvar$trials,binvar$prob),
+         "mode"=aux_mode(binvar$trials,binvar$prob),
+         "skewness"=aux_skewness(binvar$trials,binvar$prob),
+         "kurtosis"=aux_kurtosis(binvar$trials,binvar$prob))
+  
   class(sb) = "summary.binvar"
   return(sb)
 }
 
 #' @export
 print.summary.binvar <- function(sb) {
-  sprintf(paste("\"Summary Binomial\"\n\nParameters",
-          "\n- number of trials: %d",
-          "\n- prob of success : %f",
-          "\n\nMeasures",
-          "\n- mean : %f",
-          "\n- variance: %f",
-          "\n- mode : %f",
-          "\n- skewness: %f",
-          "\n- kurtosis: %f"),
-          sb$trials, sb$prob, sb$mean, sb$variance, 
-          sb$mode, sb$skewness, sb$kurtosis)
+  cat(paste("\"Summary Binomial\"\n\nParameters",
+          "\n- number of trials: ", sb$trials,
+          "\n- prob of success : ", sb$prob,
+          "\n\nMeasures", 
+          "\n- mean : ", sb$mean,
+          "\n- variance: ", sb$variance,
+          "\n- mode : ", sb$mode,
+          "\n- skewness: ", sb$skewness,
+          "\n- kurtosis: ", sb$kurtosis, sep=""))
+  invisible(sb)
 }
 
 #' @title bin_mean
